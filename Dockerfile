@@ -3,7 +3,7 @@ MAINTAINER Muhammad Lukman Nasaruddin <anatilmizun@gmail.com>
 
 ENV ANDROID_BUILD_TOOLS "28.0.3"
 
-RUN for line in $(sdkmanager --list); do if [[ $line =~ "build-tools;" ]]; then ANDROID_BUILD_TOOLS=$(echo $line | cut -d';' -f2); fi; done
+RUN for line in $(sdkmanager --list); do if echo $line | grep -q "build-tools;" ; then ANDROID_BUILD_TOOLS=$(echo $line | cut -d';' -f2); fi; done
 
 RUN install-sdk \
 	"platform-tools" \
